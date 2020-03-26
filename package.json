@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "author": "Jeesoo Min",
     "scripts": {
-        "start": "node_modules/.bin/webpack"
+        "start": "node_modules/.bin/webpack --watch"
     },
     "dependencies": {
         "path": "^0.12.7",
