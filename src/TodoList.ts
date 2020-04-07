@@ -12,13 +12,13 @@ export default class TodoList {
   }
 
   render() {
-    document.querySelector("#todo-list").innerHTML = this.todoItems
+    document.querySelector('#todo-list').innerHTML = this.todoItems
       .map(item =>
         item.isComplete
           ? `<div><s> ☆${item.content} </s></div>`
           : `<div> ☆${item.content} </div>`
       )
-      .join("");
+      .join('');
   }
 
   setState(newItems) {
