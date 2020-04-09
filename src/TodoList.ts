@@ -6,17 +6,25 @@ interface Item {
 export default class TodoList {
   todoItems: Array<Item>;
 
-  constructor(items: Array<Item>) {
+  constructor(items: Array<Item>, handleToggle) {
     this.todoItems = items;
+    document
+      .querySelector('#todo-list')
+      .addEventListener('click', (e) =>
+        handleToggle(((e.target as HTMLElement).parentNode as HTMLElement).id)
+      );
+
     this.render();
   }
 
   render() {
-    document.querySelector('#todo-list').innerHTML = this.todoItems
-      .map(item =>
+    document.querySelector(
+      '#todo-list'
+    ).innerHTML = this.todoItems
+      .map((item, index) =>
         item.isComplete
-          ? `<div><s> ☆${item.content} </s></div>`
-          : `<div> ☆${item.content} </div>`
+          ? `<div id="${index}"><s> ☆${item.content} </s></div>`
+          : `<div id="${index}"><span> ☆${item.content} </span></div>`
       )
       .join('');
   }

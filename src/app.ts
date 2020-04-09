@@ -3,25 +3,28 @@ import TodoList from './TodoList';
 const todoItems = [
   {
     content: 'Typescript 공부',
-    isComplete: false
+    isComplete: false,
   },
   {
     content: 'todo 만들기',
-    isComplete: false
-  }
-];
-
-const todolist = new TodoList(todoItems);
-
-const newTodoItems = [
-  {
-    content: 'Typescript 공부',
-    isComplete: false
+    isComplete: false,
   },
-  {
-    content: 'todo 만들기',
-    isComplete: true
-  }
 ];
 
-todolist.setState(newTodoItems);
+export default class app {
+  todoList: TodoList;
+
+  constructor() {
+    this.todoList = new TodoList(todoItems, (id) => {
+      todoItems[id].isComplete = !todoItems[id].isComplete;
+
+      this.setState(todoItems);
+    });
+  }
+
+  setState(newItems) {
+    this.todoList.setState(newItems);
+  }
+}
+
+new app();
