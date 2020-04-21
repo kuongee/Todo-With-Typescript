@@ -1,4 +1,3 @@
-import 'bulma/css/bulma.css';
 import TodoList from './TodoList';
 
 const todoItems = [

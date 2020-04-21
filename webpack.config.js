@@ -1,14 +1,19 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/app.ts', // Entry 파일 설정
+  entry: ['./src/app.ts', './assets/main.scss'], // Entry 파일 설정
   output: {
     // 번들링 결과 파일 이름과 경로 지정
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/style.css',
+    }),
+  ],
   module: {
     // 모듈과 관련된 설정
     rules: [
@@ -21,24 +26,14 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            }
-          }
-        ]
-      }
-    ]
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        exclude: /node_modules/,
+      },
+    ],
   },
   resolve: {
     // 모듈 처리 방식을 정함 (import 또는 require로 모듈을 불러올 때)
-    extensions: ['.ts'], // 지정한 경로가 파일인 경우 파일을 어떤 확장자로 정할지 정의
+    extensions: ['.ts', '.js'], // 지정한 경로가 파일인 경우 파일을 어떤 확장자로 정할지 정의
   },
   devServer: {
     contentBase: __dirname,
@@ -48,9 +43,4 @@ module.exports = {
     host: 'localhost',
     port: 9000,
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'css/mystyles.css'
-    }),
-  ]
 };
