@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: 'development',
@@ -18,7 +19,22 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
-    ],
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            }
+          }
+        ]
+      }
+    ]
   },
   resolve: {
     // 모듈 처리 방식을 정함 (import 또는 require로 모듈을 불러올 때)
@@ -32,4 +48,9 @@ module.exports = {
     host: 'localhost',
     port: 9000,
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/mystyles.css'
+    }),
+  ]
 };
