@@ -1,2 +1,2 @@
-const Label = (content) => `<span class="my-label"> ${content} </span>`;
+const Label = (content: string) => `<span class="my-label"> ${content} </span>`;
 export default Label;

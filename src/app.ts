@@ -21,8 +21,9 @@ export default class app {
     }월 ${date.getDate()}일`;
 
     this.todoList = new TodoList(todoItems, (id) => {
-      console.log('id id ', id);
-      todoItems[id].isComplete = !todoItems[id].isComplete;
+      if (id) {
+        todoItems[id].isComplete = !todoItems[id].isComplete;
+      }
 
       this.setState(todoItems);
     });

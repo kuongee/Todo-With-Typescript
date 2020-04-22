@@ -1,0 +1,6 @@
+$input-focus-color: $brown;
+$input-focus-border-color: $brown;
+$input-focus-box-shadow-size: 0;
+$input-focus-box-shadow-color: transparent;
+
+@import '../node_modules/bulma/sass/form/_all.sass';
