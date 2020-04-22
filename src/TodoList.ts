@@ -1,3 +1,5 @@
+import Label from './components/label/Label';
+
 interface Item {
   content: string;
   isComplete: boolean;
@@ -10,7 +12,7 @@ export default class TodoList {
     this.todoItems = items;
     document
       .querySelector('#todo-list')
-      .addEventListener('click', (e) =>
+      .addEventListener('click', e =>
         handleToggle(((e.target as HTMLElement).parentNode as HTMLElement).id)
       );
 
@@ -24,7 +26,7 @@ export default class TodoList {
       .map((item, index) =>
         item.isComplete
           ? `<div id="${index}"><s> ☆${item.content} </s></div>`
-          : `<div id="${index}"><span> ☆${item.content} </span></div>`
+          : `<div id="${index}">${Label(`☆${item.content}`)}</div>`
       )
       .join('');
   }

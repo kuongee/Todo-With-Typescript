@@ -39,7 +39,8 @@ $input-shadow: none;
 
 .box-extend {
   @extend .box;
-  width: 50%;
+  width: 80%;
+  max-width: 350px;
 }
 
 html,

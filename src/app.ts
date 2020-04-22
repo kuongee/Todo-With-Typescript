@@ -3,19 +3,25 @@ import TodoList from './TodoList';
 const todoItems = [
   {
     content: 'Typescript 공부',
-    isComplete: false,
+    isComplete: false
   },
   {
     content: 'todo 만들기',
-    isComplete: false,
-  },
+    isComplete: false
+  }
 ];
 
 export default class app {
   todoList: TodoList;
 
   constructor() {
-    this.todoList = new TodoList(todoItems, (id) => {
+    const date = new Date();
+    document.querySelector(
+      '#app-title'
+    ).innerHTML = `${date.getFullYear()}년 ${date.getMonth() +
+      1}월 ${date.getDate()}일`;
+
+    this.todoList = new TodoList(todoItems, id => {
       todoItems[id].isComplete = !todoItems[id].isComplete;
 
       this.setState(todoItems);
