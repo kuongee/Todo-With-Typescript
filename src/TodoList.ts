@@ -1,4 +1,4 @@
-import Label from './components/label/Label';
+import ItemLabel from './components/molecules/ItemLabel';
 
 interface Item {
   content: string;
@@ -12,7 +12,7 @@ export default class TodoList {
     this.todoItems = items;
     document
       .querySelector('#todo-list')
-      .addEventListener('click', e =>
+      .addEventListener('click', (e) =>
         handleToggle(((e.target as HTMLElement).parentNode as HTMLElement).id)
       );
 
@@ -20,13 +20,13 @@ export default class TodoList {
   }
 
   render() {
-    document.querySelector(
-      '#todo-list'
-    ).innerHTML = this.todoItems
+    document.querySelector('#todo-list').innerHTML = this.todoItems
       .map((item, index) =>
-        item.isComplete
-          ? `<div id="${index}"><s> ☆${item.content} </s></div>`
-          : `<div id="${index}">${Label(`☆${item.content}`)}</div>`
+        ItemLabel({
+          index,
+          content: `${item.content}`,
+          isStrike: item.isComplete,
+        })
       )
       .join('');
   }

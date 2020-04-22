@@ -25,33 +25,19 @@ $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 
+$title-color: $pink;
+
 // Import only what you need from Bulma
 @import '../node_modules/bulma/sass/utilities/_all.sass';
 @import '../node_modules/bulma/sass/base/_all.sass';
-@import '../node_modules/bulma/sass/elements/button.sass';
-@import '../node_modules/bulma/sass/elements/container.sass';
-@import '../node_modules/bulma/sass/elements/title.sass';
-@import '../node_modules/bulma/sass/form/_all.sass';
-@import '../node_modules/bulma/sass/components/navbar.sass';
-@import '../node_modules/bulma/sass/layout/hero.sass';
-@import '../node_modules/bulma/sass/layout/section.sass';
 @import '../node_modules/bulma/sass/elements/box.sass';
-
-.box-extend {
-  @extend .box;
-  width: 80%;
-  max-width: 350px;
-}
+@import '../node_modules/bulma/sass/elements/title.sass';
+@import '../node_modules/bulma/sass/elements/button.sass';
+@import 'box';
+@import 'label';
 
 html,
 body {
   height: 100%;
   margin: 0;
-}
-
-.my-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
 }

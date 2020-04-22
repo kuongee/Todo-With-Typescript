@@ -1,0 +1,12 @@
+.box-extend {
+  @extend .box;
+  width: 80%;
+  max-width: 350px;
+}
+
+.my-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
