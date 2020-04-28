@@ -22,10 +22,9 @@ export default class app {
     this.todoItemList = todoItems;
 
     this.date = new Date(); // Get Today Date
-    document.querySelector(
-      '#app-title'
-    ).innerHTML = `${this.date.getFullYear()}년 ${this.date.getMonth() +
-      1}월 ${this.date.getDate()}일`;
+    document.querySelector('#app-title').innerHTML = `${this.date.getFullYear()}년 ${
+      this.date.getMonth() + 1
+    }월 ${this.date.getDate()}일`;
 
     // Render Todo List
     this.todoList = new TodoList(this.todoItemList, id => {
@@ -36,15 +35,11 @@ export default class app {
     });
 
     this.todoInput = new TodoInput(value => {
-      this.setState([
-        ...this.todoItemList,
-        { content: value, isComplete: false }
-      ]);
+      this.setState([...this.todoItemList, { content: value, isComplete: false }]);
     });
   }
 
   setState(newItems) {
-    console.log(newItems);
     this.todoList.setState(newItems);
     this.todoItemList = newItems;
   }
