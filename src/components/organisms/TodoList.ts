@@ -1,18 +1,18 @@
-import ItemLabel from './components/molecules/ItemLabel';
+import ItemLabel from '../molecules/ItemLabel';
 
-interface Item {
+export interface Item {
   content: string;
   isComplete: boolean;
 }
 
-export default class TodoList {
+export class TodoList {
   todoItems: Array<Item>;
 
   constructor(items: Array<Item>, handleToggle) {
     this.todoItems = items;
     document
-      .querySelector('#todo-list')
-      .addEventListener('click', (e) =>
+      .querySelector('#app-todo-list')
+      .addEventListener('click', e =>
         handleToggle(((e.target as HTMLElement).parentNode as HTMLElement).id)
       );
 
@@ -20,12 +20,12 @@ export default class TodoList {
   }
 
   render() {
-    document.querySelector('#todo-list').innerHTML = this.todoItems
+    document.querySelector('#app-todo-list').innerHTML = this.todoItems
       .map((item, index) =>
         ItemLabel({
           index,
           content: `${item.content}`,
-          isStrike: item.isComplete,
+          isStrike: item.isComplete
         })
       )
       .join('');

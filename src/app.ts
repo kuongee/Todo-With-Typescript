@@ -1,36 +1,52 @@
-import TodoList from './TodoList';
+import { Item, TodoList } from './components/organisms/TodoList';
+import TodoInput from './components/organisms/TodoInput';
 
 const todoItems = [
   {
     content: 'Typescript 공부',
-    isComplete: false,
+    isComplete: false
   },
   {
     content: 'todo 만들기',
-    isComplete: false,
-  },
+    isComplete: false
+  }
 ];
 
 export default class app {
+  todoItemList: Array<Item>;
   todoList: TodoList;
+  todoInput: TodoInput;
+  date: Date;
 
   constructor() {
-    const date = new Date();
-    document.querySelector('#app-title').innerHTML = `${date.getFullYear()}년 ${
-      date.getMonth() + 1
-    }월 ${date.getDate()}일`;
+    this.todoItemList = todoItems;
 
-    this.todoList = new TodoList(todoItems, (id) => {
+    this.date = new Date(); // Get Today Date
+    document.querySelector(
+      '#app-title'
+    ).innerHTML = `${this.date.getFullYear()}년 ${this.date.getMonth() +
+      1}월 ${this.date.getDate()}일`;
+
+    // Render Todo List
+    this.todoList = new TodoList(this.todoItemList, id => {
       if (id) {
-        todoItems[id].isComplete = !todoItems[id].isComplete;
+        this.todoItemList[id].isComplete = !this.todoItemList[id].isComplete;
+        this.setState(this.todoItemList);
       }
+    });
 
-      this.setState(todoItems);
+    this.todoInput = new TodoInput(value => {
+      this.setState([
+        ...this.todoItemList,
+        { content: value, isComplete: false }
+      ]);
     });
   }
 
   setState(newItems) {
+    console.log(newItems);
     this.todoList.setState(newItems);
+    this.todoItemList = newItems;
   }
 }
 
