@@ -1,7 +1,7 @@
 interface props {
-  value: string;
-  placeholder: string;
-  onKeyPress(string): void;
+  value?: string;
+  placeholder?: string;
+  onKeyPress?(string): void;
 }
 
 const defaultProps: props = {
@@ -10,14 +10,15 @@ const defaultProps: props = {
   onKeyPress: () => {}
 };
 
-const TextInput = (props: props = { ...defaultProps }) => {
+const TextInput = (props: props) => {
+  const getProps = { ...defaultProps, ...props };
   const inputElement = document.createElement('INPUT');
   inputElement.classList.add('input');
   inputElement.setAttribute('type', 'text');
-  inputElement.setAttribute('placeholder', props.placeholder);
-  inputElement.setAttribute('value', props.value);
+  inputElement.setAttribute('placeholder', getProps.placeholder);
+  inputElement.setAttribute('value', getProps.value);
   inputElement.addEventListener('keypress', e => {
-    props.onKeyPress(e);
+    getProps.onKeyPress(e);
   });
   return inputElement;
 };

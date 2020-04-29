@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   stories: ['../src/components/**/*.stories.js'],
-  addons: ['@storybook/addon-actions/register'],
+  addons: ['@storybook/addon-actions/register', '@storybook/addon-knobs/register'],
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.ts$/,

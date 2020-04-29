@@ -38,5 +38,6 @@ export default class TodoInput {
 
   render() {
     this.appInputHtmlElement.append(this.textInputHtmlElement);
+    this.textInputHtmlElement.focus();
   }
 }
