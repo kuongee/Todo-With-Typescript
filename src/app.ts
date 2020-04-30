@@ -27,10 +27,18 @@ export default class app {
     }월 ${this.date.getDate()}일`;
 
     // Render Todo List
-    this.todoList = new TodoList(this.todoItemList, id => {
-      if (id) {
-        this.todoItemList[id].isComplete = !this.todoItemList[id].isComplete;
-        this.setState(this.todoItemList);
+    this.todoList = new TodoList({
+      items: this.todoItemList,
+      handleToggle: id => {
+        if (id) {
+          this.todoItemList[id].isComplete = !this.todoItemList[id].isComplete;
+          this.setState(this.todoItemList);
+        }
+      },
+      handleClickX: id => {
+        const newItems = [...this.todoItemList];
+        newItems.splice(id, 1);
+        this.setState(newItems);
       }
     });
 

@@ -27,6 +27,8 @@ $input-shadow: none;
 
 $title-color: $pink;
 
+$button-color: $grey-dark;
+
 // Import only what you need from Bulma
 @import '../node_modules/bulma/sass/utilities/_all.sass';
 @import '../node_modules/bulma/sass/base/_all.sass';
@@ -40,4 +42,11 @@ html,
 body {
   height: 100%;
   margin: 0;
+}
+
+#app-todo-list {
+  > div {
+    margin-bottom: 10px;
+    display: flex;
+  }
 }

@@ -6,8 +6,12 @@ interface Item {
   isStrike: boolean;
 }
 
-const ItemLabel = (item: Item) =>
-  `<div id=${item.index} class="label-item"> ${
-    item.isStrike ? LabelStrike(item.content) : Label(item.content)
-  } </div>`;
+const ItemLabel = (item: Item) => {
+  const labelElement = document.createElement('div');
+  labelElement.setAttribute('id', `${item.index}`);
+  labelElement.classList.add('label-item');
+  labelElement.innerHTML = `${item.isStrike ? LabelStrike(item.content) : Label(item.content)}`;
+
+  return labelElement;
+};
 export default ItemLabel;
