@@ -1,16 +1,7 @@
 import { Item, TodoList } from './components/organisms/TodoList';
 import TodoInput from './components/organisms/TodoInput';
 
-const todoItems = [
-  {
-    content: 'Typescript 공부',
-    isComplete: false
-  },
-  {
-    content: 'todo 만들기',
-    isComplete: false
-  }
-];
+const storageKey = 'todo-list-jsmin';
 
 export default class app {
   todoItemList: Array<Item>;
@@ -19,7 +10,8 @@ export default class app {
   date: Date;
 
   constructor() {
-    this.todoItemList = todoItems;
+    const getTodoList: Array<Item> = JSON.parse(localStorage.getItem(storageKey));
+    this.todoItemList = getTodoList || [];
 
     this.date = new Date(); // Get Today Date
     document.querySelector('#app-title').innerHTML = `${this.date.getFullYear()}년 ${
@@ -49,6 +41,7 @@ export default class app {
 
   setState(newItems) {
     this.todoList.setState(newItems);
+    localStorage.setItem(storageKey, JSON.stringify(newItems));
     this.todoItemList = newItems;
   }
 }

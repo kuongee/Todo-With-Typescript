@@ -45,8 +45,18 @@ body {
 }
 
 #app-todo-list {
+  max-height: 270px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
   > div {
+    width: 100%;
     margin-bottom: 10px;
     display: flex;
+    align-content: center;
+
+    .label-item {
+      max-width: 260px;
+    }
   }
 }
